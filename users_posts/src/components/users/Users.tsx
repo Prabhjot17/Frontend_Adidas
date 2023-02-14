@@ -1,50 +1,46 @@
-import React, {useEffect, useState} from 'react'
-import UsersApi from '../../apis/usersApi';
-import UserInterface from '../../interfaces/UsersInterface';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import UsersApi from "../../apis/usersApi";
+import UserInterface from "../../interfaces/UsersInterface";
 
-export interface UserProps {
-}
+export interface UserProps {}
 
 const Users = (props: UserProps) => {
-   
-    const [users, setUsers] = useState<UserInterface[]>([]);
-   
-    const [loading, showLoader] = useState<boolean>(true)
- 
-  
-    useEffect(() => {
-      const fetchAllUsers = async () => {
-        const response = await UsersApi.getAllUsers()
-        setUsers(response)
-        showLoader(false)
-      }
-      fetchAllUsers()
-    }, [])
-  
+  const [users, setUsers] = useState<UserInterface[]>([]);
+
+  const [loading, showLoader] = useState<boolean>(true);
+
+  useEffect(() => {
+    const fetchAllUsers = async () => {
+      const response = await UsersApi.getAllUsers();
+      setUsers(response);
+      showLoader(false);
+    };
+    fetchAllUsers();
+  }, []);
+  const renderList = users.map((user) => {
+    const { id, name, email, website } = user;
     return (
-      <>
-        {loading
-          ? (
-            <div>
-             Loading Users...
-            </div>
-          ) : (
-            <div>
-      <h1>Users:</h1>
-      <ul>
-        {users.map(user => (
-          <li key={user.id}>
-            {user.name} ({user.email})
-          </li>
-        ))}
-      </ul>
+      <Link to={`/posts/${id}`}>
+        <li key={user.id}>
+          {name} (Email -{email}) (Website-{website})
+        </li>
+      </Link>
+    );
+  });
 
-    
-    
-    </div>
-          )}
-      </>
-    )
-  }
+  return (
+    <>
+      {loading ? (
+        <div>Loading Users...</div>
+      ) : (
+        <div>
+          <h1>Users</h1>
+          {renderList}
+        </div>
+      )}
+    </>
+  );
+};
 
-export default Users
+export default Users;
