@@ -46,7 +46,8 @@ const Posts: React.FC = (props: PostProps) => {
         <div>Loading Posts...</div>
       ) : (
         <div>
-          <h1>Posts</h1>
+         {userId && <h1>User Specific Posts</h1>}
+         {!userId && <h1>All Posts</h1>}
           <ul>
             {postsToShow.current.map((post) => (
               <li key={post.id}>

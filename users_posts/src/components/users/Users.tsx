@@ -18,10 +18,12 @@ const Users: React.FC = (props: UserProps) => {
     };
     fetchAllUsers();
   }, []);
-  const renderList = users.map((user) => {
+
+  
+  const renderList = users?.map((user) => {
     const { id, name, email, website } = user;
     return (
-      <ul className="list-group">
+      <ul id='users-list' className="list-group">
         <Link to={`/posts/${id}`} key={user.id}>
         <li className = "list-group-item "style={{ listStyleType: "none" }}>
           {name} (Email -{email}) (Website-{website})
