@@ -37,3 +37,12 @@
   }
 }
 
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: black;
+  height: 40px;
+ 
+  width: 100%;
+}

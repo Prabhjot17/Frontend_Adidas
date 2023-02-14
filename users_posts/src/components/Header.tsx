@@ -1,6 +1,6 @@
 import React from "react";
 
-const Header = () => {
+const Header:React.FC = () => {
   return (
     <div className="ui fixed menu header-component">
       <div className="ui container center">

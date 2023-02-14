@@ -5,7 +5,7 @@ import UserInterface from "../../interfaces/UsersInterface";
 
 export interface UserProps {}
 
-const Users = (props: UserProps) => {
+const Users: React.FC = (props: UserProps) => {
   const [users, setUsers] = useState<UserInterface[]>([]);
 
   const [loading, showLoader] = useState<boolean>(true);
@@ -21,11 +21,14 @@ const Users = (props: UserProps) => {
   const renderList = users.map((user) => {
     const { id, name, email, website } = user;
     return (
-      <Link to={`/posts/${id}`}>
-        <li key={user.id}>
+      <ul className="list-group">
+        <Link to={`/posts/${id}`} key={user.id}>
+        <li className = "list-group-item "style={{ listStyleType: "none" }}>
           {name} (Email -{email}) (Website-{website})
         </li>
       </Link>
+      </ul>
+     
     );
   });
 
@@ -36,6 +39,7 @@ const Users = (props: UserProps) => {
       ) : (
         <div>
           <h1>Users</h1>
+          <h3>Click on User to see its post</h3>
           {renderList}
         </div>
       )}
