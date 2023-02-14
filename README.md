@@ -1,3 +1,5 @@
+Could not write more test cases since I was occupied with a critical task of my current organization simultaneously
+
 # Frontend Engineer Interview Project
 
 ### **High level spec**
